@@ -7,7 +7,7 @@
     #include "tokens.h"
     extern int yylval;
 %}
-stringval [\"].+[\"]
+
 
 %%
 "break" { return TK_Break; }
@@ -67,7 +67,6 @@ stringval [\"].+[\"]
 "//"[^\n]* {/* nada */}
 \".*\" { yylval.string_t = yytext; return TK_LIT_STRING; }
 [0-9]+ { yylval = atoi(yytext); return NUMBER; }
-stringval {return TK_StringVal; }
 [\n] { return EOL; }
 [ \t] { /* ignorar */ }
 . { printf("invalido %c\n", yytext[0]); }
